@@ -49,7 +49,7 @@ class historique{
  @GetMapping("/clients")
     public historique historiquetraining(String username){
 Client client=keycloakRestTemplate.getForObject("https://client-api-service.herokuapp.com/clients/65",Client.class);
-System.out.println(client.getId());
+
        return null;
     }
 }
