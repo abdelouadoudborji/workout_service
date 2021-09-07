@@ -26,7 +26,7 @@ public class KeycloakSecConfig extends KeycloakWebSecurityConfigurerAdapter {
         super.configure(http);
         http.csrf().disable();
         http.cors();
- http.authorizeRequests().antMatchers("/clients/**").hasAuthority("user");
-     // http.authorizeRequests().anyRequest().authenticated();
+ //http.authorizeRequests().antMatchers("/clients/**").hasAuthority("user");
+     http.authorizeRequests().anyRequest().authenticated();
     }
 }
