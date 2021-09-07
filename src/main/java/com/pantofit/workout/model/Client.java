@@ -12,8 +12,7 @@ import java.util.Date;
 @ToString
 @Data
 public class Client {
-    private Long id;
-
+   
     private String Code;
 
     private String first_name;
