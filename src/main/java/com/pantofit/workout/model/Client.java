@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.Column;
-import java.util.Date;
+import java.sql.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
