@@ -2,6 +2,7 @@ package com.pantofit.workout.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pantofit.workout.model.Abonnement;
+import com.pantofit.workout.model.Salle;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,6 +27,8 @@ public class Workout {
    */
 @Transient
     private Abonnement abonnement;
+    @Transient
+    private Salle salle;
 
 
 }
