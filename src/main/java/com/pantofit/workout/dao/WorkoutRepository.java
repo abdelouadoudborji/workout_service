@@ -6,5 +6,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource()
 public interface WorkoutRepository extends JpaRepository<Workout,Long> {
+     ArrayList<Workout> findWorkoutByAbonnementID(Long AbonnementID);
 }
 
