@@ -6,10 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.Column;
-import java.util.Date;
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
+import java.sql.Date;
+
 @Data
 public class Client {
     private Long id;

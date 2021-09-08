@@ -7,7 +7,7 @@ public class Salle {
 
     private Long id;
     private String code;
-    private String name;
+    private String nom;
     private String description;
     private String altitude;
     private String longitude;
