@@ -21,8 +21,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 
 @RestController
 public class WorkoutController {
@@ -62,5 +63,24 @@ class historique{
      workouts.forEach(workout -> System.out.println(workout));
      workouts.forEach(workout -> listhistorique.add(new historique(workout.getSalle().getNom(),workout.getDate_workout())));
        return listhistorique;
+    }
+    @GetMapping(path="/workoutcheck/{id}/{code}")
+    public boolean checkworkout(@PathVariable(name="id") Long id,@PathVariable(name="code") String code){
+boolean check=keycloakRestTemplate.getForObject("https://abonnement-api-service.herokuapp.com/workout/"+id,Boolean.class);
+if(check){
+    Long SalleID=keycloakRestTemplate.getForObject("https://salle-api-service.herokuapp.com/getSalleCode/"+code,Long.class);
+    Long Abonnementid=keycloakRestTemplate.getForObject("https://abonnement-api-service.herokuapp.com/getAbonnement/"+id,Long.class);
+Workout workout=new Workout();
+    SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+    Date date = new Date(System.currentTimeMillis());
+workout.setDate_workout(date);
+workout.setAbonnementID(Abonnementid);
+workout.setSalleID(SalleID);
+workoutRepository.save(workout);
+return true;
+
+}
+
+        return false;
     }
 }
