@@ -66,11 +66,11 @@ class historique{
     }
     @GetMapping(path="/workoutcheck/{id}/{code}")
     public boolean checkworkout(@PathVariable(name="id") Long id,@PathVariable(name="code") String code){
+         Long SalleID=keycloakRestTemplate.getForObject("https://salle-api-service.herokuapp.com/getSalleCode/"+code,Long.class);
+      if(SalleID >1){    
 boolean check=keycloakRestTemplate.getForObject("https://abonnement-api-service.herokuapp.com/workout/"+id,Boolean.class);
 if(check){
-    Long SalleID=keycloakRestTemplate.getForObject("https://salle-api-service.herokuapp.com/getSalleCode/"+code,Long.class);
-    if(SalleID >1){
-    Long Abonnementid=keycloakRestTemplate.getForObject("https://abonnement-api-service.herokuapp.com/getAbonnement/"+id,Long.class);
+      Long Abonnementid=keycloakRestTemplate.getForObject("https://abonnement-api-service.herokuapp.com/getAbonnement/"+id,Long.class);
 Workout workout=new Workout();
     SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
     Date date = new Date(System.currentTimeMillis());
