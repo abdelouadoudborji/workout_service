@@ -69,6 +69,7 @@ class historique{
 boolean check=keycloakRestTemplate.getForObject("https://abonnement-api-service.herokuapp.com/workout/"+id,Boolean.class);
 if(check){
     Long SalleID=keycloakRestTemplate.getForObject("https://salle-api-service.herokuapp.com/getSalleCode/"+code,Long.class);
+    if(SalleID >1){
     Long Abonnementid=keycloakRestTemplate.getForObject("https://abonnement-api-service.herokuapp.com/getAbonnement/"+id,Long.class);
 Workout workout=new Workout();
     SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
@@ -78,6 +79,8 @@ workout.setAbonnementID(Abonnementid);
 workout.setSalleID(SalleID);
 workoutRepository.save(workout);
 return true;
+    }
+    return false;
 
 }
 
